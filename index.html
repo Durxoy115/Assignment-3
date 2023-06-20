@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assignment-3</title>
+    <style>
+      .error-message {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
 </head>
 <body>
   <img style="height: 400px; width: 500px;" id="myImage" src="https://images.unsplash.com/photo-1625859043880-56acbcb6a6ac?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Original Image">
 
+  <p id="myParagraph">Pandas have excellent camouflage for their habitat.Their eyes are different to normal bears.
+    Cubs are well protected in their first month.Pandas can swim and even climb trees.A helping hand.
+    They spend a lot of their day eating.Bamboo is critical to their diet.</p>
+
+    <button id="myButton">Click Here</button>
+
+    <form id="registrationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br>
+      <span id="nameError" class="error-message"></span><br>
+  
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
+      <span id="emailError" class="error-message"></span><br>
+  
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+      <span id="passwordError" class="error-message"></span><br>
+  
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+      <span id="confirmPasswordError" class="error-message"></span><br>
+  
+      <input type="submit" value="Submit">
+    </form>
+  
 </body>
 <script>
   function getDayOfWeek(dateString) {
@@ -84,15 +116,15 @@ function currentLocation(){
   const locationInfo = currentLocation();
 console.log(locationInfo);   
 
-document.addEventListener("click", function(event) {
-  const x = event.clientX;
-  const y = event.clientY;
-  alert(`Clicked at coordinates: (${x}, ${y})`);
-});
-document.addEventListener("keydown", function(event) {
-  const keyCode = event.keyCode || event.which;
-  alert(`Key code: ${keyCode}`);
-});
+// document.addEventListener("click", function(event) {
+//   const x = event.clientX;
+//   const y = event.clientY;
+//   alert(`Clicked at coordinates: (${x}, ${y})`);
+// });
+// document.addEventListener("keydown", function(event) {
+//   const keyCode = event.keyCode || event.which;
+//   alert(`Key code: ${keyCode}`);
+// });
 
 const image = document.getElementById("myImage");
 
@@ -103,6 +135,70 @@ image.addEventListener("mouseover", function() {
 image.addEventListener("mouseout", function() {
   image.src = "https://images.unsplash.com/photo-1625859043880-56acbcb6a6ac?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb";
 });
+
+const button = document.getElementById("myButton");
+const paragraph = document.getElementById("myParagraph");
+
+button.addEventListener("click", function() {
+  paragraph.textContent = "Button Clicked!";
+});
+
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Reset error messages
+  clearErrorMessages();
+
+  // Validate Name field
+  const nameInput = document.getElementById("name");
+  const nameError = document.getElementById("nameError");
+  if (!isValidName(nameInput.value)) {
+    nameError.textContent = "Name should not be empty and should contain only letters.";
+  }
+
+  // Validate Email field
+  const emailInput = document.getElementById("email");
+  const emailError = document.getElementById("emailError");
+  if (!isValidEmail(emailInput.value)) {
+    emailError.textContent = "Invalid email address.";
+  }
+
+  // Validate Password field
+  const passwordInput = document.getElementById("password");
+  const passwordError = document.getElementById("passwordError");
+  if (!isValidPassword(passwordInput.value)) {
+    passwordError.textContent = "Password should have a minimum length of 8 characters, one uppercase letter, one lowercase letter, and one digit.";
+  }
+
+  // Validate Confirm Password field
+  const confirmPasswordInput = document.getElementById("confirmPassword");
+  const confirmPasswordError = document.getElementById("confirmPasswordError");
+  if (confirmPasswordInput.value !== passwordInput.value) {
+    confirmPasswordError.textContent = "Passwords do not match.";
+  }
+});
+
+function isValidName(name) {
+  return /^[a-zA-Z]+$/.test(name);
+}
+
+function isValidEmail(email) {
+  // Simple email validation using regular expression
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPassword(password) {
+  // Password should have a minimum length of 8 characters,
+  // one uppercase letter, one lowercase letter, and one digit.
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password);
+}
+
+function clearErrorMessages() {
+  const errorMessages = document.querySelectorAll(".error-message");
+  errorMessages.forEach(function(errorMessage) {
+    errorMessage.textContent = "";
+  });
+}
 
 </script>
 </html>
