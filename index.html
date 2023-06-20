@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <img style="height: 400px; width: 500px;" id="myImage" src="https://images.unsplash.com/photo-1625859043880-56acbcb6a6ac?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Original Image">
+
+</body>
+<script>
+  function getDayOfWeek(dateString) {
+  const date = new Date(dateString);
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayOfWeekIndex = date.getDay();
+  const dayOfWeek = daysOfWeek[dayOfWeekIndex];
+  return dayOfWeek;
+}
+const dayOfWeek = getDayOfWeek('2023-06-18');
+console.log(dayOfWeek);
+
+function calculateSquareRootOfSumOfSquares(numbers) {
+ 
+ const sumOfSquares = numbers.reduce((sum, number) => sum + Math.pow(number, 2), 0);
+
+ // Calculate the square root of the sum of squares
+ const squareRoot = Math.sqrt(sumOfSquares);
+
+ return squareRoot;
+}
+
+const numbers = [3, 7, 4, 6];
+const result = calculateSquareRootOfSumOfSquares(numbers);
+console.log(result); 
+
+function isPrime(number) {
+  // Check if the number is less than 2
+  if (number < 2) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(number); i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+const number = 13;
+const isNumberPrime = isPrime(number);
+console.log(isNumberPrime); 
+
+function openNewWindow(url, width, height) {
+  
+  window.open(url);
+}
+const url = 'https://example.com';
+const width = 800;
+const height = 600;
+
+openNewWindow(url, width, height);
+
+function getBrowserInfo(){
+    var appCodeName =  navigator.appCodeName;
+    var appVersion = navigator.appVersion;
+    return{
+      name: appCodeName,
+      version: appVersion
+    };
+
+  }
+  const browserInfo = getBrowserInfo();
+console.log(browserInfo.name);   
+console.log(browserInfo.version);
+function currentLocation(){
+    navigator.geolocation.getCurrentPosition(function(position){
+    let a = position.coords.altitude;
+    let b = position.coords.longitude;
+    })
+    
+  }
+
+  const locationInfo = currentLocation();
+console.log(locationInfo);   
+
+document.addEventListener("click", function(event) {
+  const x = event.clientX;
+  const y = event.clientY;
+  alert(`Clicked at coordinates: (${x}, ${y})`);
+});
+document.addEventListener("keydown", function(event) {
+  const keyCode = event.keyCode || event.which;
+  alert(`Key code: ${keyCode}`);
+});
+
+const image = document.getElementById("myImage");
+
+image.addEventListener("mouseover", function() {
+  image.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/2021_Sagano_Bamboo_forest_in_Arashiyama%2C_Kyoto%2C_Japan.jpg/351px-2021_Sagano_Bamboo_forest_in_Arashiyama%2C_Kyoto%2C_Japan.jpg";
+});
+
+image.addEventListener("mouseout", function() {
+  image.src = "https://images.unsplash.com/photo-1625859043880-56acbcb6a6ac?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb";
+});
+
+</script>
+</html>
