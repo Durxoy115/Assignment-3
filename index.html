@@ -47,7 +47,8 @@
     <button id="button">Click me!</button>
 
     <ul id="myList"></ul>
-  
+    <img id="myNewImage" style="height: 400px; width: 700px;"  src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQijI6Sf7U-nKAfhHFmFBhVVVIxOfzI3QBeHqEjXJ7qcqbu98eqykx0UdmHrvt9Wx5hKilfZROD0mR85gk" alt=""> <br>
+    <button id="changeButton">Change Image</button>
 </body>
 <script>
   function getDayOfWeek(dateString) {
@@ -223,6 +224,10 @@ window.addEventListener("load", function() {
   }
 });
 
+document.getElementById("changeButton").addEventListener("click", function() {
+  const image = document.getElementById("myNewImage");
+  image.src = "https://images.mubicdn.net/images/cast_member/541394/cache-241467-1517521674/image-w856.jpg";
+});
 
 </script>
 </html>
