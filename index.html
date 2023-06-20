@@ -9,6 +9,9 @@
         color: red;
         font-weight: bold;
       }
+      .highlight {
+      background-color: yellow;
+    }
     </style>
 </head>
 <body>
@@ -39,6 +42,11 @@
   
       <input type="submit" value="Submit">
     </form>
+
+    <p id="paragraph">This is a new paragraph.</p>
+    <button id="button">Click me!</button>
+
+    <ul id="myList"></ul>
   
 </body>
 <script>
@@ -199,6 +207,22 @@ function clearErrorMessages() {
     errorMessage.textContent = "";
   });
 }
+
+document.getElementById("button").addEventListener("click", function() {
+  const paragraph = document.getElementById("paragraph");
+  paragraph.classList.add("highlight");
+});
+
+window.addEventListener("load", function() {
+  const myList = document.getElementById("myList");
+
+  for (let i = 1; i <= 5; i++) {
+    const listItem = document.createElement("li");
+    listItem.textContent = i;
+    myList.appendChild(listItem);
+  }
+});
+
 
 </script>
 </html>
